@@ -37,6 +37,9 @@ namespace Sonic_Shuffle_Model_Importer
 
         public MDLArchive archive;
         public string currentFilePath;
+        public string gdiFilePath;
+        public string modFilePath;
+        public string outputFilePath;
 
         public Form1()
         {
@@ -236,7 +239,7 @@ namespace Sonic_Shuffle_Model_Importer
 
         private void BTN_ExtractMDL_Click(object sender, EventArgs e)
         {
-            if(archive == null)
+            if (archive == null)
             {
                 MessageBox.Show("No MDL file loaded. Please open an MDL file first.");
                 return;
@@ -254,6 +257,63 @@ namespace Sonic_Shuffle_Model_Importer
                 }
                 MessageBox.Show("MDL file extracted successfully!");
             }
+        }
+
+        private void BTN_OrigGDI_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                gdiFilePath = openFileDialog.FileName;
+                Text_OrigGDI.Text = gdiFilePath;
+            }
+        }
+
+        private void BTN_ModDir_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialogue = new FolderBrowserDialog();
+
+            if (folderBrowserDialogue.ShowDialog() == DialogResult.OK)
+            {
+                modFilePath = folderBrowserDialogue.SelectedPath;
+                Text_ModPath.Text = modFilePath;
+            }
+        }
+
+        private void BTN_OutDir_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialogue = new FolderBrowserDialog();
+
+            if (folderBrowserDialogue.ShowDialog() == DialogResult.OK)
+            {
+                outputFilePath = folderBrowserDialogue.SelectedPath;
+                Text_OutPath.Text = outputFilePath;
+            }
+        }
+
+        private void BTN_BuildGDI_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(gdiFilePath) || string.IsNullOrEmpty(modFilePath) || string.IsNullOrEmpty(outputFilePath))
+            {
+                MessageBox.Show("Please select the GDI file, modified files directory, and output directory before building the GDI.");
+                return;
+            }
+
+            string args = $"-gdi \"{gdiFilePath}\" -data \"{modFilePath}\" -output \"{outputFilePath}\" -rebuild";
+            Debug.WriteLine(args);
+            Process.Start("buildgdi.exe", args);
+
+        }
+
+        private void BTN_TestGdi_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo() { FileName = $"{outputFilePath}\\disc.gdi", UseShellExecute = true });
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
