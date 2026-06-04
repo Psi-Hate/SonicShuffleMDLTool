@@ -3,7 +3,7 @@
 ## Required Files:
 - [GDI Builder](https://github.com/Sappharad/GDIbuilder/releases/) + [buildgdi.exe](https://github.com/Sappharad/GDIbuilder/releases/download/v2.1.1/gdibuilder211_cmd_win_x64.zip): Extract/Build GDI
 - [sa-tools](https://github.com/X-Hax/sa_tools/releases): SAMDL, PVM Texture Editing, etc
-- [SonicShuffleMDLTool](https://github.com/Psi-Hate/SonicShuffleMDLTool/Releases): MDL Editor 
+- [SonicShuffleMDLTool](https://github.com/Psi-Hate/SonicShuffleMDLTool/releases): MDL Editor 
 - [Blender 5.1+](https://www.blender.org/download/releases/5-1/): Model Editing
 - [SonicAdventureBlenderIO](https://github.com/X-Hax/SonicAdventureBlenderIO): Blender Suite for SA1, SA2, Shuffle, etc.
 
